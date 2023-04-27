@@ -22,6 +22,7 @@ body {
   width: 100%;
   outline: none;
   border: none;
+  padding-bottom: 15px;
 }
 
 .note-textarea {
