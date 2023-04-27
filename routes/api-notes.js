@@ -3,7 +3,7 @@ const { logger } = require("../middleware/logger");
 const fs = require("fs/promises");
 const { uid } = require("uid");
 const router = express.Router();
-//all routes and methods for api/notes get, post, and delete by id param
+//all routes and methods for api/notes get, post, and delete by id param. All fetch from the db.json file. post and delete read the json file and overwrite the contents with the new input or delete.
 router
   .route("/notes")
   .get(async (req, res) => {
