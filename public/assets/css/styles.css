@@ -22,7 +22,6 @@ body {
   width: 100%;
   outline: none;
   border: none;
-  padding-bottom: 15px;
 }
 
 .note-textarea {
@@ -35,6 +34,7 @@ body {
   height: 50px;
   margin-top: 13px;
   font-size: 3rem;
+  padding-bottom: 15px;
 }
 
 .note-title:read-only,
