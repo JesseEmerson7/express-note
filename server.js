@@ -16,7 +16,9 @@ app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
-app.get("/api/notes", async (req, res) => {
+app
+.route("/api/notes")
+.get( async (req, res) => {
   try {
     data = await fs.readFile("./db/db.json");
     res.json(JSON.parse(data));
@@ -24,9 +26,8 @@ app.get("/api/notes", async (req, res) => {
     console.log(err);
     res.sendStatus(500);
   }
-});
-
-app.post("/api/notes", async (req, res) => {
+})
+.post( async (req, res) => {
   try {
     const data = await fs.readFile("./db/db.json", "utf8");
     const pastTipsArray = JSON.parse(data);
