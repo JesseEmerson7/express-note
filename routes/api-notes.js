@@ -1,9 +1,9 @@
 const express = require("express");
-const {logger} = require("../middleware/logger");
-const fs = require('fs/promises')
+const { logger } = require("../middleware/logger");
+const fs = require("fs/promises");
 const { uid } = require("uid");
 const router = express.Router();
-
+//all routes and methods for api/notes get, post, and delete by id param
 router
   .route("/notes")
   .get(async (req, res) => {
@@ -32,7 +32,7 @@ router
       const pastTipsJson = JSON.stringify(pastTipsArray);
 
       await fs.writeFile("./db/db.json", pastTipsJson, { flag: "w" });
-      console.log("Tip posted!");
+      console.log("Note posted!");
       res.sendStatus(200);
     } catch (err) {
       console.log(err);

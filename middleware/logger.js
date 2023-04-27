@@ -1,10 +1,9 @@
 const express = require("express");
-
 const logger = (req, res, next) => {
   const colorGet = "\x1b[36m";
   const colorPost = "\x1b[32m";
   const colorDelete = "\x1b[31m";
-
+//middleware to log out each request and it's method
   switch (req.method) {
     case "GET": {
       console.info(`${colorGet}${req.method} request to ${req.path}`);
