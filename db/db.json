@@ -1,6 +1,1 @@
-[
-    {
-        "title":"Test Title",
-        "text":"Test text"
-    }
-]
+[{"title":"Test Title","text":"Test text","id":"1234"},{"title":"This is a id test","text":"testing the id","id":"58590812453"},{"title":"This is test id 2","text":"wow it works with deconstructing the req.body and assigning the values to variables in an object. then adding the uid to the end of the object.","id":"2dad6be4f95"}]

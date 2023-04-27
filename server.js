@@ -1,24 +1,63 @@
-const fs = require('fs/promises');
+//TO DO: (1)finnish delete method. (2)set up routs file. (3)deploy to heroku. (4)write readme. 
+
+const fs = require("fs/promises");
 const express = require("express");
 const path = require("path");
+const { uid } = require("uid");
+const { logger } = require("./middleware/logger");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "/public/index.html"));
-});
+app.use(logger);
 
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/notes.html"));
 });
 
-app.get('/api/notes',(req, res)=>{
-    fs.readFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
+app.get("/api/notes", async (req, res) => {
+  try {
+    data = await fs.readFile("./db/db.json");
+    res.json(JSON.parse(data));
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
 });
+
+app.post("/api/notes", async (req, res) => {
+  try {
+    const data = await fs.readFile("./db/db.json", "utf8");
+    const pastTipsArray = JSON.parse(data);
+
+    const { title, text } = req.body;
+
+    const newTip = {
+      title,
+      text,
+      id: uid(),
+    };
+
+    pastTipsArray.push(newTip);
+    const pastTipsJson = JSON.stringify(pastTipsArray);
+
+    await fs.writeFile("./db/db.json", pastTipsJson, { flag: "w" });
+
+    res.sendStatus(200);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
+});
+
+//where I left off trying to delete
+app.delete("/api/notes/:id", async (req, res) => {});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/public/index.html"));
+});
+
 app.listen(PORT, () => {
-  console.log(`App listening on Port: ${PORT}`);
+  console.log(`\x1b[33m App listening on Port: ${PORT}`);
 });
