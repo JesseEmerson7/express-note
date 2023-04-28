@@ -12,8 +12,8 @@ This app's logic was created using node and express to handle all server http re
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [How to contribute](#How)
-- [Questions](#Questions)
+- [How to contribute](#how-to-contribute)
+- [Questions](#questions)
 - [License](#license)
 
 ## Installation
