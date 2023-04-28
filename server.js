@@ -3,7 +3,7 @@ const fs = require("fs/promises");
 const express = require("express");
 const path = require("path");
 const { logger } = require("./middleware/logger");
-const api = require('./routes/api-notes')
+const api = require("./routes/api-notes");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
